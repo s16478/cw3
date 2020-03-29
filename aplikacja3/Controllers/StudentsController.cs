@@ -38,5 +38,31 @@ namespace aplikacja3.Controllers
             return Ok(student);
         }
 
+        // moje metody
+
+        [HttpPut("{id}")]
+
+        public IActionResult PutStudent(int id)
+        {
+      
+            return Ok("Update successful");
+        }
+
+
+        [HttpDelete("{id}")]
+
+        public IActionResult DeleteStudent(int id)
+        {
+            
+            return Ok("Student deleted");
+        }
+
+
+
+
+
+
+
+
     }
 }
