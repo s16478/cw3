@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using aplikacja3.Models;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace aplikacja3.Controllers
 {
@@ -13,7 +12,7 @@ namespace aplikacja3.Controllers
         [HttpGet]
         public string GetStudent(string orderBy)
         {
-            return $"Kowalski, Malewski, Andrzejewski sortowanie={orderBy}";
+            return $"Kowalski, Malewski, Andrzejewski {orderBy}";
         }
 
         [HttpGet("{id}")]
@@ -28,6 +27,15 @@ namespace aplikacja3.Controllers
                 return Ok("Malewski");
             }
             return NotFound("Student not found");
+        }
+
+        [HttpPost]
+        public IActionResult CreateStudent(Student student)
+        {
+            // add to database
+            // generating index number
+            student.IndexNumber = $"s{new Random().Next(1, 20000)}";
+            return Ok(student);
         }
 
     }
