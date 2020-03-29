@@ -1,4 +1,5 @@
 ﻿using System;
+using aplikacja3.DAL;
 using aplikacja3.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,17 @@ namespace aplikacja3.Controllers
     [Route("api/students")]
     public class StudentsController : ControllerBase
     {
-        [HttpGet]
-        public string GetStudent(string orderBy)
+        private readonly IDbService _dbService;
+
+        public StudentsController(IDbService dbService)
         {
-            return $"Kowalski, Malewski, Andrzejewski {orderBy}";
+            _dbService = dbService;
+        }
+
+        [HttpGet]
+        public IActionResult GetStudents(string orderBy)
+        {
+            return Ok(_dbService.GetStudents());
         }
 
         [HttpGet("{id}")]
@@ -56,13 +64,5 @@ namespace aplikacja3.Controllers
             
             return Ok("Student deleted");
         }
-
-
-
-
-
-
-
-
     }
 }
