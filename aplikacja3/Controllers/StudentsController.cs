@@ -18,9 +18,9 @@ namespace aplikacja3.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetStudent(string orderBy)
+        public IActionResult GetStudents(string orderBy)
         {
-            return Ok(_dbService.GetStudent());
+            return Ok(_dbService.GetStudents());
         }
 
         [HttpGet("{id}")]
